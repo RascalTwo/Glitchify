@@ -56,7 +56,7 @@ Usage:\t [Source Directory] [Destination Directory] [Glitch UUID]`
  */
 function fail(msg){
 	console.log(HELP_MESSAGE)
-	console.error(msg)
+	console.error('Error:', msg)
 	return process.exit(1)
 }
 

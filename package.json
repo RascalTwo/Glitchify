@@ -1,13 +1,18 @@
 {
-  "name": "glitch-translate",
+  "name": "glitchify",
   "version": "1.0.0",
-  "description": "",
+  "description": "Prepare static project for upload to glitch.com",
+  "homepage": "https://github.com/RascalTwo/glitchify",
   "main": "glitchify.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "author": "Rascal_Two <therealrascaltwo@gmail.com> (https://github.com/RascalTwo)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RascalTwo/glitchify.git"
   },
-  "author": "",
-  "license": "ISC",
+  "scripts": {
+    "start": "node glitchify.js"
+  },
   "dependencies": {
     "fs-extra": "^10.0.0"
   }
