@@ -21,7 +21,7 @@ async function* getFiles(directory) {
  * Convert async iterable to an array of the items.
  *
  * @param {AsyncIterable<T>} iterable async iterable to convert
- * @returns {T[]} async iterale items
+ * @returns {Promise<T[]>} async iterale items
  */
 const asyncIterableToArray = async iterable => {
 	const items = []
@@ -38,7 +38,7 @@ const CACHE_FILEPATH = path.join(path.dirname(__filename), 'uuid-cache.json')
  * Fetch the UUID of a glitch project
  *
  * @param {string} uuidOrURL UUID or URL of glitch project containing UUID
- * @returns {string} UUID of glitch project
+ * @returns {Promise<string>} UUID of glitch project
  */
 const fetchUUID = async uuidOrURL => {
 	if (!uuidOrURL.startsWith('http') && uuidOrURL.length === 36) return uuidOrURL
@@ -62,13 +62,13 @@ function fail(msg){
 
 (async () => {
 	const srcRoot = process.argv[2]
-	if (!srcRoot) fail('Source path required');
+	if (!srcRoot) return fail('Source path required');
 
 	const destRoot = process.argv[3]
-	if (!destRoot) fail('Destination path required');
+	if (!destRoot) return fail('Destination path required');
 
 	const uuidOrURL = process.argv[4];
-	if (!uuidOrURL) fail('UUID or URL required');
+	if (!uuidOrURL) return fail('UUID or URL required');
 
 	const uuid = await fetchUUID(uuidOrURL);
 	const prefix = `https://cdn.glitch.global/${uuid}/`;
