@@ -17,7 +17,7 @@ npm install
 ## Usage
 
 ```sh
-node glitchify [Source Directory] [Destination Directory] [Glitch UUID/URL]
+node glitchify [Source Directory] [Destination Directory] [Glitch UUID]
 node glitchify my-static-project my-static-project-glitchified 012345678901234567-890123456789012345
 ```
 

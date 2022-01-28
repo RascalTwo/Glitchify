@@ -29,7 +29,10 @@ const asyncIterableToArray = async iterable => {
 	return items;
 }
 
+
 const BOOKMARKLET = "alert(document.querySelector('#sidebar').querySelector('img').src.split('.').slice(-2)[0].split('/').slice(-1)[0])"
+
+const CACHE_FILEPATH = path.join(path.dirname(__filename), 'uuid-cache.json')
 
 /**
  * Fetch the UUID of a glitch project
@@ -39,14 +42,14 @@ const BOOKMARKLET = "alert(document.querySelector('#sidebar').querySelector('img
  */
 const fetchUUID = async uuidOrURL => {
 	if (!uuidOrURL.startsWith('http') && uuidOrURL.length === 36) return uuidOrURL
-	const cache = JSON.parse((await fs.promises.readFile(path.join(path.dirname(__filename), 'uuid-cache.json'))).toString())
+	const cache = fs.existsSync(CACHE_FILEPATH) ? JSON.parse((await fs.promises.readFile(CACHE_FILEPATH)).toString()) : {}
 	if (uuidOrURL in cache) return cache[uuidOrURL]
-	throw new Error(`UUID fetching not implemented, run this JavaScript instead: ${BOOKMARKLET} `)
+	throw new Error(`UUID fetching not implemented, discovert the UUID on your own or run this JavaScript instead: ${BOOKMARKLET} `)
 }
 
 
 const HELP_MESSAGE = `Convert static HTML projects with an 'assets' folder containing all assets into HTML ready to be uploaded to Glitch
-Usage:\t [Source Directory] [Destination Directory] [Glitch UUID/URL]`
+Usage:\t [Source Directory] [Destination Directory] [Glitch UUID]`
 
 /**
  * @param {string} msg failure message
